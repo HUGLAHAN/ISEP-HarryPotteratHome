@@ -2,9 +2,10 @@ package com.hogwarts.character;
 
 public class Enemy extends AbstractEnemy {
 
-    public Enemy(String name, int health, int strength) {
-        super(name, health, strength);
+    public Enemy(String name, int strength,int healthPoints) {
+        super(name, strength, healthPoints);
     }
+
 
     @Override
     public void takeDamage(int damage) {
@@ -17,8 +18,8 @@ public class Enemy extends AbstractEnemy {
     }
 
     @Override
-    public void attack(Character character) {
-        int damage = getLevel() * 2;
+    public void attack(Character character, int attackPower) {
+        int damage = attackPower - character.getDefense();
         character.takeDamage(damage);
         System.out.println(getName() + " attaque " + character.getName() + " pour " + damage + " dégâts.");
     }

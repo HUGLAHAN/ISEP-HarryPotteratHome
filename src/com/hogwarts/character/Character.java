@@ -7,6 +7,7 @@ public abstract class Character {
     private int currentHealth;
     private int attack;
     private int defense;
+    private int healthPoints;
 
     public Character(String name, int level, int healthPoints) {
         this.name = name;
@@ -31,18 +32,9 @@ public abstract class Character {
         return currentHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
-    public void setCurrentHealth(int currentHealth) {
-        if (currentHealth < 0) {
-            this.currentHealth = 0;
-        } else if (currentHealth > maxHealth) {
-            this.currentHealth = maxHealth;
-        } else {
-            this.currentHealth = currentHealth;
-        }
+    public void setHealthPoints(int healthPoints) {
+        this.maxHealth = healthPoints;
+        this.currentHealth = healthPoints;
     }
 
     public int getAttack() {
@@ -62,12 +54,29 @@ public abstract class Character {
     }
 
     public void takeDamage(int damage) {
-        int damageTaken = Math.max(damage - defense, 0);
-        setCurrentHealth(currentHealth - damageTaken);
-    }
-    public void defend() {
-        setDefense(getDefense() * 2);
+        int damageTaken = damage - defense;
+        if (damageTaken < 0) {
+            damageTaken = 0;
+        }
+        currentHealth -= damageTaken;
     }
 
-    public abstract void attack(Character character);
+    public void setCurrentHealth(int currentHealth) {
+        if (currentHealth < 0) {
+            this.currentHealth = 0;
+        } else if (currentHealth > maxHealth) {
+            this.currentHealth = maxHealth;
+        } else {
+            this.currentHealth = currentHealth;
+        }
+    }
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+
+    public void defend() {
+        // TODO: Implement defend method
+    }
+
 }

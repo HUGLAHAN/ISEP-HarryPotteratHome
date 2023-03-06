@@ -4,8 +4,8 @@ public class Boss extends AbstractEnemy {
     private int bonusHealth;
     private int bonusAttack;
 
-    public Boss(String name, int health, int strength, int bonusHealth, int bonusAttack) {
-        super(name, health, strength);
+    public Boss(String name, int strength, int healthPoints, int bonusHealth, int bonusAttack) {
+        super(name, strength, healthPoints);
         this.bonusHealth = bonusHealth;
         this.bonusAttack = bonusAttack;
     }
@@ -42,11 +42,15 @@ public class Boss extends AbstractEnemy {
     }
 
     @Override
-    public void attack(Character character) {
-        int damage = getAttack() - character.getDefense();
+    public void attack(Character character, int attackPower) {
+        int damage = attackPower - character.getDefense();
         if (damage <= 0) {
+            System.out.println(attackPower);
+            System.out.println(character.getDefense());
+            System.out.println(attackPower - character.getDefense());
             System.out.println(getName() + "'s attack was ineffective against " + character.getName() + "!");
         } else {
+            damage = Math.max(1, damage); // On s'assure que les dégâts infligés sont au moins de 1.
             System.out.println(getName() + " attacks " + character.getName() + " for " + damage + " damage!");
             character.takeDamage(damage);
         }

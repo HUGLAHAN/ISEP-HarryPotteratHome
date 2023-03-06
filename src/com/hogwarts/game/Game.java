@@ -18,13 +18,13 @@ public class Game {
 
     private AbstractEnemy generateEnemy() {
         Random random = new Random();
-        int type = random.nextInt(2);
+        int type = random.nextInt(4);
         if (type == 0) {
-            return new Enemy("Goblin", 50, 10);
+            return new Enemy("Goblin", 10, 50);
         } else if (type == 1) {
-            return new Enemy("Orc", 75, 15);
+            return new Enemy("Orc", 15, 75);
         } else {
-            return new Boss("Voldemort", 100, 20, 50, 50);
+            return new Boss("Voldemort", 30, 120, 50, 50);
         }
     }
 
@@ -43,7 +43,7 @@ public class Game {
             System.out.println("3. Cast a spell (costs 10 Mana)");
             int choice = scanner.nextInt();
             if (choice == 1) {
-                player.attack(enemy);
+                player.attack(enemy, 5);
             } else if (choice == 2) {
                 player.defend();
             } else if (choice == 3) {

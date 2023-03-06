@@ -8,7 +8,11 @@ public abstract class AbstractEnemy extends Character {
         super(name, health, strength);
     }
 
-    public abstract void attack(Character character);
+    public void attack(Character character, int attackPower) {
+        int damage = attackPower - character.getDefense();
+        character.takeDamage(damage);
+        System.out.println(getName() + " attaque " + character.getName() + " pour " + damage + " dégâts.");
+    }
 
     public void takeDamage(int damage) {
         int actualDamage = Math.max(damage - getDefense(), 0);

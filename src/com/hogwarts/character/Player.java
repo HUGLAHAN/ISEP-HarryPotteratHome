@@ -16,13 +16,12 @@ public class Player extends Character {
         this.manaPoints = manaPoints;
     }
 
-    @Override
-    public void attack(Character character) {
-        int damage = getAttack() - character.getDefense();
+    public void attack(Character character, int attackPower) {
+        int damage = attackPower - character.getDefense();
         if (damage <= 0) {
-            System.out.println(getAttack());
+            System.out.println(attackPower);
             System.out.println(character.getDefense());
-            System.out.println(getAttack() - character.getDefense());
+            System.out.println(attackPower - character.getDefense());
             System.out.println(getName() + "'s attack was ineffective against " + character.getName() + "!");
         } else {
             damage = Math.max(1, damage); // On s'assure que les dégâts infligés sont au moins de 1.
@@ -30,7 +29,6 @@ public class Player extends Character {
             character.takeDamage(damage);
         }
     }
-
 
     public void castSpell(Character character, int manaCost, int spellPower) {
         if (manaCost > getManaPoints()) {
