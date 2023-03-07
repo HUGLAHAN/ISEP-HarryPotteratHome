@@ -4,8 +4,8 @@ import java.util.Random;
 
 public abstract class AbstractEnemy extends Character {
 
-    public AbstractEnemy(String name, int health, int strength) {
-        super(name, health, strength);
+    public AbstractEnemy(String name,int level, int healthPoints, int manaPoints) {
+        super(name,level, healthPoints, manaPoints);
     }
 
     public void attack(Character character, int attackPower) {

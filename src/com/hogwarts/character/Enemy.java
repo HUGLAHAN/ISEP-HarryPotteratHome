@@ -2,8 +2,8 @@ package com.hogwarts.character;
 
 public class Enemy extends AbstractEnemy {
 
-    public Enemy(String name, int strength,int healthPoints) {
-        super(name, strength, healthPoints);
+    public Enemy(String name, int level,int healthPoints, int manaPoints) {
+        super(name, level, healthPoints, manaPoints);
     }
 
 

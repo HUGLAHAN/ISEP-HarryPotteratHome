@@ -4,8 +4,8 @@ public class Boss extends AbstractEnemy {
     private int bonusHealth;
     private int bonusAttack;
 
-    public Boss(String name, int strength, int healthPoints, int bonusHealth, int bonusAttack) {
-        super(name, strength, healthPoints);
+    public Boss(String name,int level, int healthPoints, int manaPoints) {
+        super(name,level, healthPoints, manaPoints);
         this.bonusHealth = bonusHealth;
         this.bonusAttack = bonusAttack;
     }

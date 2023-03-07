@@ -4,16 +4,20 @@ public abstract class Character {
     private String name;
     private int level;
     private int maxHealth;
+    private int maxMana;
     private int currentHealth;
+    private int currentMana;
     private int attack;
     private int defense;
     private int healthPoints;
 
-    public Character(String name, int level, int healthPoints) {
+    public Character(String name, int level, int healthPoints, int manaPoints) {
         this.name = name;
         this.level = level;
         this.maxHealth = healthPoints;
+        this.maxMana = manaPoints;
         this.currentHealth = healthPoints;
+        this.currentMana = manaPoints;
     }
 
     public String getName() {
@@ -24,16 +28,13 @@ public abstract class Character {
         return level;
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
-    }
 
     public int getCurrentHealth() {
         return currentHealth;
     }
 
     public void setHealthPoints(int healthPoints) {
-        this.maxHealth = healthPoints;
+        //this.maxHealth = healthPoints;
         this.currentHealth = healthPoints;
     }
 
@@ -72,6 +73,12 @@ public abstract class Character {
     }
     public int getHealthPoints() {
         return healthPoints;
+    }
+    public int getMaxHealthPoints() {
+        return maxHealth;
+    }
+    public int getMaxManaPoints() {
+        return maxMana;
     }
 
 
