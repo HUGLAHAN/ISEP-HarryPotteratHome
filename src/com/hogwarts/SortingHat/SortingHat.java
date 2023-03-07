@@ -5,7 +5,7 @@ import com.hogwarts.character.*;
 import java.util.Scanner;
 
 public class SortingHat {
-    public static House sort(Wizard wizard) {
+    public static House sort() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to Hogwarts Sorting Hat ceremony!");
         System.out.println("I am the Sorting Hat, and I will determine your Hogwarts house.");

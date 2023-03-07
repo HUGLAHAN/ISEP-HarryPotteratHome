@@ -1,12 +1,14 @@
 package com.hogwarts.spell;
 
-public class ForbiddenSpell extends AbstractSpell {
-    public ForbiddenSpell(String name, int level) {
-        super(name, level);
+import com.hogwarts.character.Character;
+
+public class ForbiddenSpell extends Spell {
+    public ForbiddenSpell(String name, int level, double successRate, int spellPower) {
+        super(name, level, successRate, spellPower);
     }
 
     @Override
     public void castSpell() {
-        System.out.println("Casting forbidden spell " + getName() + " at level " + getLevel());
+        System.out.println(getName() + " is a forbidden spell and should not be used!");
     }
 }

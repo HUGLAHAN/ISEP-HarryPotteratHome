@@ -5,8 +5,8 @@ import com.hogwarts.spell.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+import com.hogwarts.spell.AbstractSpell;
 public class Wizard extends Character {
     private int manaPoints;
     private int healthPoints;
@@ -69,9 +69,11 @@ public class Wizard extends Character {
         setDefense(getDefense() + 5);
         System.out.println(getName() + " est en position défensive !");
     }
+
     public int getManaPoints() {
         return manaPoints;
     }
+
     public int getHealthPoints() {
         return healthPoints;
     }
@@ -89,25 +91,31 @@ public class Wizard extends Character {
     }
 
     public void useheathPotion(Potion potion, int healthPoints) {
+        if (house == House.HUFFLEPUFF) {
+            System.out.println("HUFFLEPUFF");
+            healthPoints *= 1.5; // Coefficient multiplicateur de 1.5 pour les potions utilisées par les membres de Hufflepuff
+        }
         if (potions.contains(potion)) {
             potions.remove(potion);
-            System.out.println("on est lax!");
-            System.out.println(getHealthPoints());
-            System.out.println("on est laxdwdwadawdwd!");
-            System.out.println(getCurrentHealth());
-            System.out.println("on est laaxx!");
-            System.out.println(healthPoints);
-            System.out.println("on est laaaxxx!");
-            System.out.println(getMaxHealthPoints());
+//            System.out.println("on est lax!");
+//            System.out.println(getHealthPoints());
+//            System.out.println("on est laxdwdwadawdwd!");
+//            System.out.println(getCurrentHealth());
+//            System.out.println("on est laaxx!");
+//            System.out.println(healthPoints);
+//            System.out.println("on est laaaxxx!");
+//            System.out.println(getMaxHealthPoints());
             setHealthPoints(Math.min(getCurrentHealth() + healthPoints, getMaxHealthPoints()));
         } else {
             System.out.println("You don't have that potion in your inventory!");
         }
     }
+
     public void usemanaPotion(Potion potion, int manaPoints) {
-        //ICI
-        //Scanner scanner = new Scanner(System.in);
-        System.out.println("on est ici!");
+        if (house == House.HUFFLEPUFF) {
+            System.out.println("HUFFLEPUFF");
+            manaPoints *= 1.5; // Coefficient multiplicateur de 1.5 pour les potions utilisées par les membres de Hufflepuff
+        }
         if (potions.contains(potion)) {
             potions.remove(potion);
             System.out.println("on est la!");
@@ -121,6 +129,7 @@ public class Wizard extends Character {
             System.out.println("You don't have that potion in your inventory!");
         }
     }
+
     public void attack(Character character, int attackPower) {
         int damage = attackPower - character.getDefense();
         if (damage <= 0) {
@@ -132,21 +141,6 @@ public class Wizard extends Character {
             damage = Math.max(1, damage); // On s'assure que les dégâts infligés sont au moins de 1.
             System.out.println(getName() + " attacks " + character.getName() + " for " + damage + " damage!");
             character.takeDamage(damage);
-        }
-    }
-
-    public void castSpell(Character character, int manaCost, int spellPower) {
-        if (manaCost > getManaPoints()) {
-            System.out.println("Not enough mana to cast spell!");
-        } else {
-            int damage = spellPower - character.getDefense();
-            if (damage <= 0) {
-                System.out.println(getName() + "'s spell was ineffective against " + character.getName() + "!");
-            } else {
-                System.out.println(getName() + " casts a spell on " + character.getName() + " for " + damage + " damage!");
-                character.takeDamage(damage);
-                setManaPoints(getManaPoints() - manaCost);
-            }
         }
     }
 }
