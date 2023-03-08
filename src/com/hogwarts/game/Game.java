@@ -9,10 +9,12 @@ import java.util.Scanner;
 
 
 public class Game {
-    private Wizard wizard;
+    public Wizard wizard;
+    // on est passe de private a public
     private AbstractEnemy enemy;
     private int turnCount;
-    private House house;
+    public House house;
+    // on est passe de private a public
 
     public Game() {
         this.wizard = new Wizard("Harry Potter", 1, 100, 100);
@@ -44,6 +46,9 @@ public class Game {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
+//        System.out.println("test");
+//        house = wizard.getHouse();
+        System.out.println(house);
         System.out.println("Welcome to Hogwarts Battle!");
         System.out.println("Your opponent is " + enemy.getName() + "!");
         while (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
@@ -84,8 +89,13 @@ public class Game {
                     System.out.println("Invalid");
                 }
             }
-            turnCount = turnCount + 1;
-            enemy.attack(wizard, 10);
+            if (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
+                turnCount = turnCount + 1;
+                enemy.attack(wizard, 10);
+            }
+            if (wizard.getCurrentHealth() <= 0){
+                System.out.println("You are dead");
+            }
         }
     }
 }

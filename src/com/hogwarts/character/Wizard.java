@@ -143,4 +143,28 @@ public class Wizard extends Character {
             character.takeDamage(damage);
         }
     }
+//    public void castSpell() {
+//        Character target = getTarget();
+//        int spellPower = getSpellPower();
+//        if (target == null) {
+//            System.out.println(getName() + "'s spell has no effect, no target selected!");
+//            return;
+//        }
+//        System.out.println(House.SLYTHERIN);
+//
+////        System.out.println(house);
+////        house = wizard.getHouse();
+////        if (house == House.SLYTHERIN) {
+////            System.out.println("Slytherin");
+////            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
+////        }
+//
+//        int damage = spellPower - target.getDefense();
+//        if (damage <= 0) {
+//            System.out.println(getName() + "'s spell was ineffective against " + target.getName() + "!");
+//        } else {
+//            System.out.println(getName() + " casts a spell on " + target.getName() + " for " + damage + " damage!");
+//            target.takeDamage(damage);
+//        }
+//    }
 }

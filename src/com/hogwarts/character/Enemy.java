@@ -22,5 +22,5 @@ public class Enemy extends AbstractEnemy {
         int damage = attackPower - character.getDefense();
         character.takeDamage(damage);
         System.out.println(getName() + " attaque " + character.getName() + " pour " + damage + " dégâts.");
-    }
+        }
 }

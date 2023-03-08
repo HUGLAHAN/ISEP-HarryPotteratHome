@@ -5,16 +5,14 @@ import com.hogwarts.belongings.House;
 import com.hogwarts.character.Character;
 import com.hogwarts.SortingHat.SortingHat;
 import com.hogwarts.character.Wizard;
-
+import com.hogwarts.game.Game;
 
 
 import java.util.Scanner;
 
 public class Spell extends AbstractSpell {
-    private House house;
 
-
-    public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.1, 20);
+    public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.1, 100);
     public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.8, 30);
     public static final Spell INCENDIO = new Spell("Incendio", 1, 0.6, 50);
     public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.5, 20);
@@ -68,17 +66,13 @@ public class Spell extends AbstractSpell {
             return;
         }
         System.out.println(House.SLYTHERIN);
-        System.out.println(house);
-        this.getName();
 
-        System.out.println(house);
-        System.out.println(this.house);
-        if (house == House.SLYTHERIN) {
-            System.out.println("Slytherin");
-            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
-        }
-        System.out.println("ICI");
-        System.out.println(spellPower);
+//        System.out.println(house);
+//        house = wizard.getHouse();
+//        if (house == House.SLYTHERIN) {
+//            System.out.println("Slytherin");
+//            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
+//        }
 
         int damage = spellPower - target.getDefense();
         if (damage <= 0) {
