@@ -1,15 +1,15 @@
 package com.hogwarts.game;
 
+import com.hogwarts.SortingHat.SortingHat;
 import com.hogwarts.belongings.*;
-import com.hogwarts.character.*;
-import com.hogwarts.character.Character;
+import com.hogwarts.character.AbstractEnemy;
+import com.hogwarts.character.Enemy;
+import com.hogwarts.character.Wizard;
 import com.hogwarts.spell.Spell;
-import com.hogwarts.SortingHat.*;
-import java.util.Random;
+
 import java.util.Scanner;
 
-
-public class Game {
+public class chamberofsecretsLevel2 {
     public static Wizard wizard;
     // on est passe de private a public
     private AbstractEnemy enemy;
@@ -17,7 +17,7 @@ public class Game {
     public House house;
     // on est passe de private a public
 
-    public Game() {
+    public chamberofsecretsLevel2() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("What is your wizard's name?");
@@ -43,18 +43,21 @@ public class Game {
         this.wizard.addPotion(Potion.manaPotion);
         this.wizard.addPotion(Potion.healingPotion);
 
-        this.enemy = Enemy.generateEnemy();
+        this.enemy = Enemy.EnemyLevel1();
         this.turnCount = 1;
 
         System.out.println("Wizard " + wizardName + " has been created and equipped with a wand with a " + wandCore + " like core.");
 
     }
-
-
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Hogwarts Battle!");
-        System.out.println("Your opponent is " + enemy.getName() + "!");
+        System.out.println("Welcome to The Chamber of Secrets level(2)!");
+        System.out.println("You are in the toilets of the dungeon.");
+        System.out.println("Your enemy is a basilisk.");
+        System.out.println("To defeat the basilisk, you must use Wingardium Leviosa to drop objects on its head.");
+        System.out.println("Press any key to start the level...");
+        scanner.nextLine();
+
         while (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
             System.out.println("Turn " + turnCount + "!");
             System.out.println("Your HP: " + wizard.getCurrentHealth() + "/" + wizard.getMaxHealthPoints());
@@ -78,12 +81,17 @@ public class Game {
                     spell.setTarget(enemy);
 //                    System.out.println(spell);
 //                    System.out.println(Spell.WINGARDIUM_LEVIOSA);
-
-                    if (wizard.getManaPoints() >= 10) {
-                        wizard.setManaPoints(wizard.getManaPoints() - 10);
-                        spell.castSpell();
-                    } else {
-                        System.out.println("You do not have enough Mana to cast this spell!");
+                    if (spell == Spell.WINGARDIUM_LEVIOSA) {
+                        if (wizard.getManaPoints() >= 10) {
+                            wizard.setManaPoints(wizard.getManaPoints() - 10);
+                            spell.castSpell();
+                        } else {
+                            System.out.println("You do not have enough Mana to cast this spell!");
+                        }
+                    }else {
+                        System.out.println("You do not choose the right spell!");
+                        System.out.println("You do not know how to use this spell!");
+                        System.out.println("You should use Wingardium Leviosa.");
                     }
                     break;
                 case 4:

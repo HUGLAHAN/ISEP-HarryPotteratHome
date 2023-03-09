@@ -1,11 +1,8 @@
 package com.hogwarts.spell;
 
-import com.hogwarts.SortingHat.SortingHat;
 import com.hogwarts.belongings.House;
 import com.hogwarts.character.Character;
-import com.hogwarts.SortingHat.SortingHat;
-import com.hogwarts.character.Wizard;
-import com.hogwarts.game.Game;
+import com.hogwarts.game.*;
 
 
 import java.util.Random;
@@ -16,7 +13,7 @@ public class Spell extends AbstractSpell {
     public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.82, 100);
     public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.94, 30);
     public static final Spell INCENDIO = new Spell("Incendio", 1, 0.92, 50);
-    public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.97, 20);
+    public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.97, 50);
     public static final Spell ACCIO = new Spell("Accio", 1, 0.97, 40);
     public static final Spell EXPECTO_PATRONUM = new Spell("Expecto Patronum", 1, 0.90, 80);
     public static final Spell SECTUMSEMPRA = new Spell("Sectumsempra", 1, 0.86, 70);
@@ -64,7 +61,11 @@ public class Spell extends AbstractSpell {
         double rand = random.nextDouble();
 //        System.out.println(successRate);
 //        System.out.println(rand);
-        house = Game.wizard.getHouse();
+
+
+//        house = Game.wizard.getHouse();
+        house = philosopherStoneLevel1.wizard.getHouse();
+
         if (rand <= successRate || house == House.RAVENCLAW) {
             Character target = getTarget();
             int spellPower = getSpellPower();
