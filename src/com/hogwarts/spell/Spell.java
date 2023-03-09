@@ -8,17 +8,18 @@ import com.hogwarts.character.Wizard;
 import com.hogwarts.game.Game;
 
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Spell extends AbstractSpell {
 
-    public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.1, 100);
-    public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.8, 30);
-    public static final Spell INCENDIO = new Spell("Incendio", 1, 0.6, 50);
-    public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.5, 20);
-    public static final Spell ACCIO = new Spell("Accio", 1, 0.7, 40);
-    public static final Spell EXPECTO_PATRONUM = new Spell("Expecto Patronum", 1, 0.4, 80);
-    public static final Spell SECTUMSEMPRA = new Spell("Sectumsempra", 1, 0.2, 70);
+    public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.82, 100);
+    public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.92, 30);
+    public static final Spell INCENDIO = new Spell("Incendio", 1, 0.92, 50);
+    public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.97, 20);
+    public static final Spell ACCIO = new Spell("Accio", 1, 0.97, 40);
+    public static final Spell EXPECTO_PATRONUM = new Spell("Expecto Patronum", 1, 0.90, 80);
+    public static final Spell SECTUMSEMPRA = new Spell("Sectumsempra", 1, 0.86, 70);
 
     public Spell(String name, int level, double successRate, int spellPower) {
         super(name, level, successRate, spellPower);
@@ -59,27 +60,34 @@ public class Spell extends AbstractSpell {
     }
     @Override
     public void castSpell() {
-        Character target = getTarget();
-        int spellPower = getSpellPower();
-        if (target == null) {
-            System.out.println(getName() + "'s spell has no effect, no target selected!");
-            return;
-        }
-        System.out.println(House.SLYTHERIN);
+        Random random = new Random();
+        double rand = random.nextDouble();
+//        System.out.println(successRate);
+//        System.out.println(rand);
+        if (rand <= successRate) {
+            Character target = getTarget();
+            int spellPower = getSpellPower();
+            if (target == null) {
+                System.out.println(getName() + "'s spell has no effect, no target selected!");
+                return;
+            }
+//            System.out.println(House.SLYTHERIN);
+    //        System.out.println(house);
+    //        house = wizard.getHouse();
+    //        if (house == House.SLYTHERIN) {
+    //            System.out.println("Slytherin");
+    //            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
+    //        }
 
-//        System.out.println(house);
-//        house = wizard.getHouse();
-//        if (house == House.SLYTHERIN) {
-//            System.out.println("Slytherin");
-//            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
-//        }
-
-        int damage = spellPower - target.getDefense();
-        if (damage <= 0) {
-            System.out.println(getName() + "'s spell was ineffective against " + target.getName() + "!");
+            int damage = spellPower - target.getDefense();
+            if (damage <= 0) {
+                System.out.println(getName() + "'s spell was ineffective against " + target.getName() + "!");
+            } else {
+                System.out.println(getName() + " casts a spell on " + target.getName() + " for " + damage + " damage!");
+                target.takeDamage(damage);
+            }
         } else {
-            System.out.println(getName() + " casts a spell on " + target.getName() + " for " + damage + " damage!");
-            target.takeDamage(damage);
+            System.out.println("Spell " + getName() + " failed to cast!");
         }
     }
 }

@@ -2,6 +2,7 @@ package com.hogwarts.game;
 
 import com.hogwarts.belongings.*;
 import com.hogwarts.character.*;
+import com.hogwarts.character.Character;
 import com.hogwarts.spell.Spell;
 import com.hogwarts.SortingHat.*;
 import java.util.Random;
@@ -43,6 +44,7 @@ public class Game {
             return new Boss("Voldemort", 3, 120, 50);
         }
     }
+
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
@@ -91,10 +93,25 @@ public class Game {
             }
             if (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
                 turnCount = turnCount + 1;
-                enemy.attack(wizard, 10);
+                System.out.println(house);
+                // System.out.println(house);RENVOIE NULL
+                System.out.println(House.HUFFLEPUFF);
+                if (house == House.HUFFLEPUFF) {
+                    enemy.attack(wizard, 8);
+                }else{
+                    enemy.attack(wizard, 10);
+                }
             }
             if (wizard.getCurrentHealth() <= 0){
                 System.out.println("You are dead");
+            }
+            if (enemy.getCurrentHealth() <= 0){
+                wizard.chooseUpgrade();
+//                System.out.println(wizard.getMaxHealthPoints());
+//                System.out.println(wizard.getCurrentHealth());
+//                 chooseUpgrade() met la vie a 110 et ecrase les infos que on a sur la vie,
+//                 donc getCurrentHealth() = 110
+//                 et donc pour le prochain niveau on est full life
             }
         }
     }

@@ -9,10 +9,10 @@ import java.util.Random;
 public abstract class AbstractSpell {
     private String name;
     private int level;
-    private Character target;
-    private int spellPower;
-    private double successRate;
-    private House house;
+    public Character target;
+    public int spellPower;
+    public double successRate;
+    public House house;
 
     public AbstractSpell(String name, int level, double successRate, int spellPower) {
         this.name = name;
@@ -46,13 +46,5 @@ public abstract class AbstractSpell {
     }
 
     public void castSpell() {
-        Random random = new Random();
-        double rand = random.nextDouble();
-        if (rand <= successRate) {
-            System.out.println("Casting spell " + getName() + " at level " + getLevel() + " and causing " + spellPower + " damage!");
-            target.takeDamage(spellPower);
-        } else {
-            System.out.println("Spell " + getName() + " failed to cast!");
-        }
     }
 }

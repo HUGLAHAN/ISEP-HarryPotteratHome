@@ -1,15 +1,15 @@
 package com.hogwarts.character;
 
 public abstract class Character {
-    private String name;
-    private int level;
-    private int maxHealth;
-    private int maxMana;
-    private int currentHealth;
-    private int currentMana;
-    private int attack;
-    private int defense;
-    private int healthPoints;
+    public String name;
+    public int level;
+    public int maxHealth;
+    public int maxMana;
+    public int currentHealth;
+    public int currentMana;
+    public int attack;
+    public int defense;
+    public int healthPoints;
 
     public Character(String name, int level, int healthPoints, int manaPoints) {
         this.name = name;

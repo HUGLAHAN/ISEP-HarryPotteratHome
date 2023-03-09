@@ -5,6 +5,7 @@ import com.hogwarts.spell.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.hogwarts.spell.AbstractSpell;
 public class Wizard extends Character {
@@ -90,6 +91,7 @@ public class Wizard extends Character {
         this.potions = potions;
     }
 
+
     public void useheathPotion(Potion potion, int healthPoints) {
         if (house == House.HUFFLEPUFF) {
             System.out.println("HUFFLEPUFF");
@@ -143,6 +145,23 @@ public class Wizard extends Character {
             character.takeDamage(damage);
         }
     }
+    public void chooseUpgrade() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose an upgrade:");
+        System.out.println("1. +10 max health points");
+        System.out.println("2. +5 damage points");
+        int choice = scanner.nextInt();
+        if (choice == 1) {
+            this.maxHealth += 10;
+            this.currentHealth = this.maxHealth;
+        } else if (choice == 2) {
+            System.out.println("Il faut le coder : this.spellPower += 5; ");
+            //this.spellPower += 5;
+        } else {
+            System.out.println("Invalid choice");
+        }
+    }
+
 //    public void castSpell() {
 //        Character target = getTarget();
 //        int spellPower = getSpellPower();
