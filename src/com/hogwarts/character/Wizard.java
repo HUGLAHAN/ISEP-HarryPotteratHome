@@ -11,7 +11,7 @@ import com.hogwarts.spell.AbstractSpell;
 public class Wizard extends Character {
     private int manaPoints;
     private int healthPoints;
-    private House house;
+    public House house;
     private Pet pet;
     private Wand wand;
     private List<Spell> knownSpells;
@@ -94,19 +94,10 @@ public class Wizard extends Character {
 
     public void useheathPotion(Potion potion, int healthPoints) {
         if (house == House.HUFFLEPUFF) {
-            System.out.println("HUFFLEPUFF");
             healthPoints *= 1.5; // Coefficient multiplicateur de 1.5 pour les potions utilisées par les membres de Hufflepuff
         }
         if (potions.contains(potion)) {
             potions.remove(potion);
-//            System.out.println("on est lax!");
-//            System.out.println(getHealthPoints());
-//            System.out.println("on est laxdwdwadawdwd!");
-//            System.out.println(getCurrentHealth());
-//            System.out.println("on est laaxx!");
-//            System.out.println(healthPoints);
-//            System.out.println("on est laaaxxx!");
-//            System.out.println(getMaxHealthPoints());
             setHealthPoints(Math.min(getCurrentHealth() + healthPoints, getMaxHealthPoints()));
         } else {
             System.out.println("You don't have that potion in your inventory!");
@@ -115,17 +106,10 @@ public class Wizard extends Character {
 
     public void usemanaPotion(Potion potion, int manaPoints) {
         if (house == House.HUFFLEPUFF) {
-            System.out.println("HUFFLEPUFF");
             manaPoints *= 1.5; // Coefficient multiplicateur de 1.5 pour les potions utilisées par les membres de Hufflepuff
         }
         if (potions.contains(potion)) {
             potions.remove(potion);
-            System.out.println("on est la!");
-            System.out.println(getManaPoints());
-            System.out.println("on est laa!");
-            System.out.println(manaPoints);
-            System.out.println("on est laaa!");
-            System.out.println(getMaxManaPoints());
             setManaPoints(Math.min(getManaPoints() + manaPoints, getMaxManaPoints()));
         } else {
             System.out.println("You don't have that potion in your inventory!");
@@ -135,9 +119,6 @@ public class Wizard extends Character {
     public void attack(Character character, int attackPower) {
         int damage = attackPower - character.getDefense();
         if (damage <= 0) {
-            //System.out.println(attackPower);
-            //System.out.println(character.getDefense());
-            //System.out.println(attackPower - character.getDefense());
             System.out.println(getName() + "'s attack was ineffective against " + character.getName() + "!");
         } else {
             damage = Math.max(1, damage); // On s'assure que les dégâts infligés sont au moins de 1.
@@ -153,7 +134,8 @@ public class Wizard extends Character {
         int choice = scanner.nextInt();
         if (choice == 1) {
             this.maxHealth += 10;
-            this.currentHealth = this.maxHealth;
+            //this.currentHealth = this.maxHealth;
+            // a faire si on veut etre full life
         } else if (choice == 2) {
             System.out.println("Il faut le coder : this.spellPower += 5; ");
             //this.spellPower += 5;
@@ -161,29 +143,4 @@ public class Wizard extends Character {
             System.out.println("Invalid choice");
         }
     }
-
-//    public void castSpell() {
-//        Character target = getTarget();
-//        int spellPower = getSpellPower();
-//        if (target == null) {
-//            System.out.println(getName() + "'s spell has no effect, no target selected!");
-//            return;
-//        }
-//        System.out.println(House.SLYTHERIN);
-//
-////        System.out.println(house);
-////        house = wizard.getHouse();
-////        if (house == House.SLYTHERIN) {
-////            System.out.println("Slytherin");
-////            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
-////        }
-//
-//        int damage = spellPower - target.getDefense();
-//        if (damage <= 0) {
-//            System.out.println(getName() + "'s spell was ineffective against " + target.getName() + "!");
-//        } else {
-//            System.out.println(getName() + " casts a spell on " + target.getName() + " for " + damage + " damage!");
-//            target.takeDamage(damage);
-//        }
-//    }
 }

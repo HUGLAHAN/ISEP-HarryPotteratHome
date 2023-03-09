@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class Game {
-    public Wizard wizard;
+    public static Wizard wizard;
     // on est passe de private a public
     private AbstractEnemy enemy;
     private int turnCount;
@@ -18,10 +18,26 @@ public class Game {
     // on est passe de private a public
 
     public Game() {
-        this.wizard = new Wizard("Harry Potter", 1, 100, 100);
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("What is your wizard's name?");
+        String wizardName = scanner.nextLine();
+        this.wizard = new Wizard(wizardName, 1, 100, 100);
+
+        System.out.println("Choose your wand core:");
+        for (Core core : Core.values()) {
+            System.out.println((core.ordinal() + 1) + ". " + core.name().toLowerCase().replace('_', ' '));
+        }
+        int coreChoice = scanner.nextInt();
+        Core wandCore = Core.values()[coreChoice - 1];
+
+        Wand wand = new Wand(wandCore, 10);
+        this.wizard.setWand(wand);
+
+
+
         this.enemy = generateEnemy();
         this.turnCount = 1;
-        Wand wand = new Wand(Core.PHOENIX_FEATHER, 11);
         this.wizard.setWand(wand);
         this.wizard.setHouse(SortingHat.sort());
         this.wizard.setPet(Pet.OWL);
@@ -31,6 +47,8 @@ public class Game {
         this.wizard.learnSpell((Spell) Spell.EXPELLIARMUS);
         this.wizard.addPotion(Potion.manaPotion);
         this.wizard.addPotion(Potion.healingPotion);
+        System.out.println("Wizard " + wizardName + " has been created and equipped with a wand with a " + wandCore + " like core.");
+
     }
 
     private AbstractEnemy generateEnemy() {
@@ -48,9 +66,6 @@ public class Game {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-//        System.out.println("test");
-//        house = wizard.getHouse();
-        System.out.println(house);
         System.out.println("Welcome to Hogwarts Battle!");
         System.out.println("Your opponent is " + enemy.getName() + "!");
         while (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
@@ -64,55 +79,58 @@ public class Game {
             System.out.println("3. Cast a spell (costs 10 Mana)");
             System.out.println("4. Drink a potion");
             int choice = scanner.nextInt();
-            if (choice == 1) {
-                wizard.attack(enemy, 5);
-            } else if (choice == 2) {
-                wizard.defend();
-            } else if (choice == 3) {
-                Spell spell = Spell.chooseSpell();
-                spell.setTarget(enemy);
-                if (wizard.getManaPoints() >= 10) {
-                    wizard.setManaPoints(wizard.getManaPoints() - 10);
-                    spell.castSpell();
-                }
-                else {
-                    System.out.println("You do not have enough Mana to cast this spell!");
-                }
-            } else if (choice == 4) {
-                System.out.println("Which potion will you drink?");
-                System.out.println("1. Mana potion (+30 Mana)");
-                System.out.println("2. Health potion (+50 Health)");
-                int potionChoice = scanner.nextInt();
-                if (potionChoice == 1) {
-                    wizard.usemanaPotion(Potion.manaPotion, 30);
-                } else if (potionChoice == 2) {
-                    wizard.useheathPotion(Potion.healingPotion, 50);
-                } else {
-                    System.out.println("Invalid");
-                }
+            switch (choice) {
+                case 1:
+                    wizard.attack(enemy, 5);
+                    break;
+                case 2:
+                    wizard.defend();
+                    break;
+                case 3:
+                    Spell spell = Spell.chooseSpell();
+                    spell.setTarget(enemy);
+                    if (wizard.getManaPoints() >= 10) {
+                        wizard.setManaPoints(wizard.getManaPoints() - 10);
+                        spell.castSpell();
+                    } else {
+                        System.out.println("You do not have enough Mana to cast this spell!");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Which potion will you drink?");
+                    System.out.println("1. Mana potion (+30 Mana)");
+                    System.out.println("2. Health potion (+50 Health)");
+                    int potionChoice = scanner.nextInt();
+                    if (potionChoice == 1) {
+                        wizard.usemanaPotion(Potion.manaPotion, 30);
+                    } else if (potionChoice == 2) {
+                        wizard.useheathPotion(Potion.healingPotion, 50);
+                    } else {
+                        System.out.println("Invalid choice");
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
             }
+
             if (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
-                turnCount = turnCount + 1;
-                System.out.println(house);
-                // System.out.println(house);RENVOIE NULL
-                System.out.println(House.HUFFLEPUFF);
-                if (house == House.HUFFLEPUFF) {
+                turnCount++;
+                if (wizard.house == House.GRYFFINDOR) {
                     enemy.attack(wizard, 8);
-                }else{
+                } else {
                     enemy.attack(wizard, 10);
                 }
             }
-            if (wizard.getCurrentHealth() <= 0){
+
+            if (wizard.getCurrentHealth() <= 0) {
                 System.out.println("You are dead");
+                break;
             }
-            if (enemy.getCurrentHealth() <= 0){
+            if (enemy.getCurrentHealth() <= 0) {
                 wizard.chooseUpgrade();
-//                System.out.println(wizard.getMaxHealthPoints());
-//                System.out.println(wizard.getCurrentHealth());
-//                 chooseUpgrade() met la vie a 110 et ecrase les infos que on a sur la vie,
-//                 donc getCurrentHealth() = 110
-//                 et donc pour le prochain niveau on est full life
             }
         }
+
     }
 }

@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Spell extends AbstractSpell {
 
     public static final Spell AVADA_KEDAVRA = new Spell("Avada Kedavra", 1, 0.82, 100);
-    public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.92, 30);
+    public static final Spell EXPELLIARMUS = new Spell("Expelliarmus", 1, 0.94, 30);
     public static final Spell INCENDIO = new Spell("Incendio", 1, 0.92, 50);
     public static final Spell WINGARDIUM_LEVIOSA = new Spell("Wingardium Leviosa", 1, 0.97, 20);
     public static final Spell ACCIO = new Spell("Accio", 1, 0.97, 40);
@@ -64,20 +64,17 @@ public class Spell extends AbstractSpell {
         double rand = random.nextDouble();
 //        System.out.println(successRate);
 //        System.out.println(rand);
-        if (rand <= successRate) {
+        house = Game.wizard.getHouse();
+        if (rand <= successRate || house == House.RAVENCLAW) {
             Character target = getTarget();
             int spellPower = getSpellPower();
             if (target == null) {
                 System.out.println(getName() + "'s spell has no effect, no target selected!");
                 return;
             }
-//            System.out.println(House.SLYTHERIN);
-    //        System.out.println(house);
-    //        house = wizard.getHouse();
-    //        if (house == House.SLYTHERIN) {
-    //            System.out.println("Slytherin");
-    //            spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
-    //        }
+            if (house == House.SLYTHERIN) {
+                spellPower *= 1.3; // Coefficient multiplicateur de 1.3 pour les sorts utilisées par les membres de Slytherin.
+            }
 
             int damage = spellPower - target.getDefense();
             if (damage <= 0) {

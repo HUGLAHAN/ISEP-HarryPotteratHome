@@ -6,7 +6,6 @@ public class Wand {
 
     public Wand(Core core, int size) {
         this.core = core;
-        this.size = size;
     }
 
     // getters and setters
