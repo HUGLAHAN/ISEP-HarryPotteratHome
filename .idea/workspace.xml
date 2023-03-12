@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="77e51295-833e-46f5-b617-58dbe51bae29" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/SortingHat/SortingHat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/belongings/Core.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/belongings/House.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/belongings/Pet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/belongings/Potion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/belongings/Wand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/character/AbstractEnemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/character/Boss.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/character/Character.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/character/Enemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/character/Wizard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/game/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/game/chamberofsecretsLevel2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/game/philosopherStoneLevel1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/spell/AbstractSpell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/spell/ForbiddenSpell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/hogwarts/spell/Spell.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2MpLl4uPjeLM0HSlyKdf9AfkHX2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Leonetti/IdeaProjects/Harry Potter at Home2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Harry Potter at Home2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Harry Potter at Home2" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="77e51295-833e-46f5-b617-58dbe51bae29" name="Changes" comment="" />
+      <created>1678459737015</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678459737015</updated>
+    </task>
+    <servers />
+  </component>
+</project>
