@@ -3,6 +3,7 @@ package com.isep.hpah.core.spell;
 
 import com.isep.hpah.core.belongings.House;
 import com.isep.hpah.core.character.Character;
+import com.isep.hpah.core.game.chamberofsecretsLevel2;
 import com.isep.hpah.core.game.philosopherStoneLevel1;
 
 import java.util.Random;
@@ -65,6 +66,7 @@ public class Spell extends AbstractSpell {
 
 //        house = Game.wizard.getHouse();
         house = philosopherStoneLevel1.wizard.getHouse();
+//        house = chamberofsecretsLevel2.wizard.getHouse();
 
         if (rand <= successRate || house == House.RAVENCLAW) {
             Character target = getTarget();

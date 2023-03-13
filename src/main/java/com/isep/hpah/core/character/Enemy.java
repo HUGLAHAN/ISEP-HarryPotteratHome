@@ -41,4 +41,7 @@ public class Enemy extends AbstractEnemy {
     public static AbstractEnemy EnemyLevel1() {
         return new Enemy("Troll", 1, 200, 0);
     }
+    public static AbstractEnemy EnemyLevel2() {
+        return new Enemy("basilisk", 2, 300, 0);
+    }
 }

@@ -11,11 +11,9 @@ import java.util.Scanner;
 
 public class philosopherStoneLevel1 {
     public static Wizard wizard;
-    // on est passe de private a public
     private AbstractEnemy enemy;
     private int turnCount;
     public House house;
-    // on est passe de private a public
 
     public philosopherStoneLevel1() {
         Scanner scanner = new Scanner(System.in);
@@ -49,78 +47,95 @@ public class philosopherStoneLevel1 {
         System.out.println("Wizard " + wizardName + " has been created and equipped with a wand with a " + wandCore + " like core.");
 
     }
-    public void start() {
-        Scanner scanner = new Scanner(System.in);
+
+    public void displayIntroduction() {
         System.out.println("Welcome to The Philosopher's Stone level!");
         System.out.println("You are in the toilets of the dungeon.");
         System.out.println("Your enemy is a troll.");
         System.out.println("To defeat the troll, you must use Wingardium Leviosa to drop objects on its head.");
         System.out.println("Press any key to start the level...");
+        Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
-
-        while (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
-            System.out.println("Turn " + turnCount + "!");
-            System.out.println("Your HP: " + wizard.getCurrentHealth() + "/" + wizard.getMaxHealthPoints());
-            System.out.println("Your Mana: " + wizard.getManaPoints() + "/" + wizard.getMaxManaPoints());
-            System.out.println(enemy.getName() + "'s HP: " + enemy.getCurrentHealth() + "/" + enemy.getMaxHealthPoints());
-            System.out.println("What will you do?");
-            System.out.println("1. Attack");
-            System.out.println("2. Defend");
-            System.out.println("3. Cast a spell (costs 10 Mana)");
-            System.out.println("4. Drink a potion");
-            int choice = scanner.nextInt();
-            switch (choice) {
-                case 1:
-                    wizard.attack(enemy, 5);
-                    break;
-                case 2:
-                    wizard.defend();
-                    break;
-                case 3:
-                    Spell spell = Spell.chooseSpell();
-                    spell.setTarget(enemy);
-//                    System.out.println(spell);
-//                    System.out.println(Spell.WINGARDIUM_LEVIOSA);
-                    if (spell == Spell.WINGARDIUM_LEVIOSA) {
-                        if (wizard.getManaPoints() >= 10) {
-                            wizard.setManaPoints(wizard.getManaPoints() - 10);
-                            spell.castSpell();
-                        } else {
-                            System.out.println("You do not have enough Mana to cast this spell!");
-                        }
-                    }else {
-                        System.out.println("You do not choose the right spell!");
-                        System.out.println("You do not know how to use this spell!");
-                        System.out.println("You should use Wingardium Leviosa.");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Which potion will you drink?");
-                    System.out.println("1. Mana potion (+30 Mana)");
-                    System.out.println("2. Health potion (+50 Health)");
-                    int potionChoice = scanner.nextInt();
-                    if (potionChoice == 1) {
-                        wizard.usemanaPotion(Potion.manaPotion, 30);
-                    } else if (potionChoice == 2) {
-                        wizard.useheathPotion(Potion.healingPotion, 50);
-                    } else {
-                        System.out.println("Invalid choice");
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid choice");
-                    break;
+    }
+    public void displayTurnInfo() {
+        System.out.println("Turn " + turnCount + "!");
+        System.out.println("Your HP: " + wizard.getCurrentHealth() + "/" + wizard.getMaxHealthPoints());
+        System.out.println("Your Mana: " + wizard.getManaPoints() + "/" + wizard.getMaxManaPoints());
+        System.out.println(enemy.getName() + "'s HP: " + enemy.getCurrentHealth() + "/" + enemy.getMaxHealthPoints());
+        System.out.println("What will you do?");
+        System.out.println("1. Attack");
+        System.out.println("2. Defend");
+        System.out.println("3. Cast a spell (costs 10 Mana)");
+        System.out.println("4. Drink a potion");
+    }
+    public void performSpellAction() {
+        Spell spell = Spell.chooseSpell();
+        spell.setTarget(enemy);
+        if (spell == Spell.WINGARDIUM_LEVIOSA) {
+            if (wizard.getManaPoints() >= 10) {
+                wizard.setManaPoints(wizard.getManaPoints() - 10);
+                spell.castSpell();
+            } else {
+                System.out.println("You do not have enough Mana to cast this spell!");
             }
+        } else {
+            System.out.println("You do not choose the right spell!");
+            System.out.println("You do not know how to use this spell!");
+            System.out.println("You should use Wingardium Leviosa.");
+        }
+    }
+    public void performPotionAction() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Which potion will you drink?");
+        System.out.println("1. Mana potion (+30 Mana)");
+        System.out.println("2. Health potion (+50 Health)");
+        int potionChoice = scanner.nextInt();
+        if (potionChoice == 1) {
+            wizard.usemanaPotion(Potion.manaPotion, 30);
+        } else if (potionChoice == 2) {
+            wizard.useheathPotion(Potion.healingPotion, 50);
+        } else {
+            System.out.println("Invalid choice");
+        }
+    }
+    public void performPlayerAction(int choice) {
+        switch (choice) {
+            case 1:
+                wizard.attack(enemy, 5);
+                break;
+            case 2:
+                wizard.defend();
+                break;
+            case 3:
+                performSpellAction();
+                break;
+            case 4:
+                performPotionAction();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
+    }
+    public void performEnemyAction() {
+        if (wizard.house == House.GRYFFINDOR) {
+            enemy.attack(wizard, 8);
+        } else {
+            enemy.attack(wizard, 10);
+        }
+    }
 
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        displayIntroduction();
+        while (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
+            displayTurnInfo();
+            int choice = scanner.nextInt();
+            performPlayerAction(choice);
             if (wizard.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0) {
                 turnCount++;
-                if (wizard.house == House.GRYFFINDOR) {
-                    enemy.attack(wizard, 8);
-                } else {
-                    enemy.attack(wizard, 10);
-                }
+                performEnemyAction();
             }
-
             if (wizard.getCurrentHealth() <= 0) {
                 System.out.println("You are dead");
                 break;
@@ -129,6 +144,5 @@ public class philosopherStoneLevel1 {
                 wizard.chooseUpgrade();
             }
         }
-
     }
 }
